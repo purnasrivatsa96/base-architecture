@@ -101,6 +101,8 @@ The backend is a set of focused services — chat/agent, paper search, projects,
 
 **The problem.** Researchers used Base to *find and analyze* papers, then left for Word, Google Docs, or Overleaf to *write* — and the chunk-level citation grounding Base had produced was lost in the move. The writer closes that loop: compose in Base, keep citations as first-class grounded elements, export anywhere.
 
+![Where the writer service fits: Base's services (Writer, Project, Chat/Agent, Paper Search) as bounded zones, each owning its data, with the writer exposing its own public API Gateway](diagrams/writer-context.png)
+
 **The design.** It rests on a few hard architectural commitments:
 
 - **One source of truth.** The document is stored once, in a canonical format the service owns. The editor's in-memory state and every export (PDF, DOCX, LaTeX, Markdown) are *derivations* of that canonical form — never alternative sources, never round-tripped through DOCX. One direction of truth fanning out to many representations.
