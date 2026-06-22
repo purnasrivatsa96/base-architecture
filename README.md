@@ -75,7 +75,7 @@ The backend is a set of focused services — chat/agent, paper search, projects,
 - **Pre-chunked data source.** Rather than letting the managed Knowledge Base parse and chunk, parsing and chunk-boundary decisions are owned upstream. This trades some managed convenience for full control over chunk boundaries, metadata, and the reference mapping that powers citation links — which is the product's whole point.
 - **DLQs everywhere, status as a state machine.** Every queue has a dead-letter queue; every paper carries an explicit ingestion status in DynamoDB. A stuck paper is visible and re-drivable rather than silently lost.
 
-![Knowledge Base ingestion pipeline: discovery to EventBridge to SQS to fetch and submit to async parse to process to ingest to OpenSearch](diagrams/kb-pipeline.png)
+![Knowledge Base ingestion architecture: DynamoDB Streams and EventBridge, SQS queues with dead-letter queues, the three Lambda stages, Bedrock Data Automation, S3, and OpenSearch Serverless](diagrams/kb-architecture.png)
 
 ---
 
